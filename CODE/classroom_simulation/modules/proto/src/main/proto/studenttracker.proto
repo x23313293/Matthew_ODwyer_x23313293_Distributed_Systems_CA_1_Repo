@@ -1,0 +1,67 @@
+syntax = "proto3";
+
+package com.yourorg.classroom.studenttracker;
+
+option java_multiple_files = true;
+option java_package        = "com.yourorg.classroom.studenttracker";
+option java_outer_classname = "StudentTrackerProto";
+
+// gRPC endpoint definitions
+service StudentTrackerService {
+  // Adds a new student to the system
+  rpc RegisterStudent (RegisterStudentRequest) returns (Status);
+
+  // Marks present/absent for a student
+  rpc MarkAttendance (AttendanceRequest) returns (Status);
+
+  // Records participation/engagement metrics
+  rpc TrackEngagement (EngagementRequest) returns (Status);
+
+  // Retrieves a report of past engagement entries (including attendance, participation, etc.)
+  rpc GetEngagementReport (EngagementReportRequest) returns (EngagementReport);
+}
+
+// Input type for registering a student
+message RegisterStudentRequest {
+  string studentId = 1;
+  string fullName  = 2;
+}
+
+// Input type to mark attendance for a student on a particular day/time
+message AttendanceRequest {
+  string studentId = 1;
+  bool present     = 2;
+  string timestamp = 3; // ISO‑8601 e.g. "2025‑08‑04T09:00:00Z"
+}
+
+// Tracks one engagement event (participation point, quiz etc.)
+message EngagementRequest {
+  string studentId         = 1;
+  double participationScore = 2;
+  string comments           = 3;
+  string timestamp          = 4; // ISO‑8601
+}
+
+// Input for report queries
+message EngagementReportRequest {
+  string studentId = 1;
+}
+
+// Output type with one-time‑series list of past engagement events
+message EngagementReport {
+  string studentId        = 1;
+  repeated EngagementEntry entries = 2;
+  double averageScore     = 3;
+}
+
+// One data point for the participation over time
+message EngagementEntry {
+  string timestamp          = 1; // ISO‑8601
+  double participationScore = 2;
+  string comments           = 3;
+}
+
+// Generic response wrapper for operations without custom output
+message Status {
+  string message = 1;
+}

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+                             http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.yourorg.classroom</groupId>
+    <artifactId>classroom-simulation</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>StudentTrackerService</artifactId>
+  <packaging>jar</packaging>
+  <name>Student Tracker gRPC Service</name>
+
+  <properties>
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <!-- Generated code from proto definitions -->
+    <dependency>
+      <groupId>com.yourorg.classroom</groupId>
+      <artifactId>proto</artifactId>
+    </dependency>
+
+    <!-- Shared discovery helper (ServiceRegistry) -->
+    <dependency>
+      <groupId>com.yourorg.classroom</groupId>
+      <artifactId>discovery</artifactId>
+    </dependency>
+
+    <!-- gRPC runtime libraries (versions inherited via grpc-bom) -->
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-stub</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-protobuf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-netty-shaded</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Exec plugin to allow running the service via Maven -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.5.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <!-- Your server main class that starts the gRPC server and registers -->
+          <mainClass>com.yourorg.classroom.studenttracker.StudentTrackerServer</mainClass>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

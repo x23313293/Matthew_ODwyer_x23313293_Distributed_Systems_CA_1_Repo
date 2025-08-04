@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml"
+      fx:controller="com.yourorg.classroom.gui.StudentTrackerController"
+      alignment="TOP_CENTER" spacing="10" padding="15">
+
+  <!-- Title -->
+  <Label text="Student Tracker" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+
+  <!-- Input and Action Section -->
+  <HBox spacing="12" alignment="CENTER_LEFT">
+    <VBox spacing="5">
+      <Label text="Student ID:"/>
+      <TextField fx:id="studentIdField" promptText="e.g. 12345"/>
+    </VBox>
+    <VBox spacing="5">
+      <Label text="Full Name:"/>
+      <TextField fx:id="fullNameField" promptText="e.g. Jane Doe"/>
+    </VBox>
+    <VBox spacing="5">
+      <Label text="Attendance Date (YYYY-MM-DD):"/>
+      <TextField fx:id="attendanceDateField" promptText="2025‑08‑04"/>
+    </VBox>
+    <VBox spacing="8" alignment="CENTER">
+      <Button fx:id="registerBtn" text="Register Student" maxWidth="150"/>
+      <Button fx:id="markAttendanceBtn" text="Mark Attendance" maxWidth="150"/>
+      <Button fx:id="trackEngagementBtn" text="Get Engagement Report" maxWidth="150"/>
+    </VBox>
+  </HBox>
+
+  <!-- Engagement Report Table -->
+  <TableView fx:id="reportTable" prefHeight="350.0" prefWidth="750.0">
+    <columns>
+      <TableColumn fx:id="dateCol" text="Date" prefWidth="180.0"/>
+      <TableColumn fx:id="scoreCol" text="Participation Score" prefWidth="180.0"/>
+      <TableColumn fx:id="commentsCol" text="Comments" prefWidth="390.0"/>
+    </columns>
+  </TableView>
+
+</VBox>

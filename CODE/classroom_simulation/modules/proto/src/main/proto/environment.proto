@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package com.yourorg.classroom.environmentcontrol;
+
+option java_multiple_files = true;
+option java_package        = "com.yourorg.classroom.environmentcontrol";
+option java_outer_classname = "EnvironmentControlProto";
+
+service EnvironmentControlService {
+  // Sets lighting level (e.g. brightness) for specific area/zone
+  rpc SetLighting (LightingRequest) returns (Status);
+
+  // Adjusts target temperature for a zone (°C/°F)
+  rpc AdjustTemperature (TemperatureRequest) returns (Status);
+
+  // Retrieves current lighting & temperature status across zones
+  rpc GetEnvironmentStatus (Empty) returns (EnvironmentStatus);
+}
+
+message LightingRequest {
+  string zone            = 1; // e.g. "front", "back", "classroom-101"
+  double lightLevel      = 2; // e.g. 0.0 (off) to 1.0 (full brightness)
+}
+
+message TemperatureRequest {
+  string zone             = 1;
+  double targetCelsius    = 2;
+}
+
+message EnvironmentStatus {
+  map<string, double> lightLevels     = 1; // zone → level
+  map<string, double> temperatures    = 2; // zone → current °C
+}
+
+message Empty {}
+
+message Status {
+  string message = 1;
+}

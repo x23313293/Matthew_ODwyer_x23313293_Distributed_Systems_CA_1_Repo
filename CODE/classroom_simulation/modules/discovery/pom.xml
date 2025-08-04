@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"       
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"       
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                     
+                             https://maven.apache.org/xsd/maven-4.0.0.xsd">
+  
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Inherit groupId, version, dependency/plugin settings from root parent -->
+  <parent>
+    <groupId>com.yourorg.classroom</groupId>
+    <artifactId>classroom-simulation</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <!-- relativePath is optional if module is under parent/children directory -->
+  </parent>
+
+  <artifactId>discovery</artifactId>
+  <packaging>jar</packaging>
+  <name>Service Discovery Helper (ServiceRegistry)</name>
+
+  <dependencies>
+    <!-- Optional: Shadowing parent dependencyManagement versions -->
+    <!-- Example: Add JUnit for unit testing if you write tests in this module -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <!-- Exec plugin so I can launch or demo ServiceRegistry directly -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>com.yourorg.classroom.discovery.ServiceRegistryMain</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+</project>

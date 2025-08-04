@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+           http://maven.apache.org/POM/4.0.0
+           https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+
+  <!-- Inherit versions and plugin configs from parent -->
+  <parent>
+    <groupId>com.yourorg.classroom</groupId>
+    <artifactId>classroom-simulation</artifactId>
+    <version>1.0.0‑SNAPSHOT</version>
+  </parent>
+
+  <artifactId>proto</artifactId>
+  <packaging>jar</packaging>
+  <name>Classroom Protocol Definitions (proto)</name>
+
+  <properties>
+    <!-- If needed, override or define parent properties -->
+  </properties>
+
+  <dependencies>
+    <!-- Required for protobuf runtime and shared messages -->
+    <dependency>
+      <groupId>com.google.protobuf</groupId>
+      <artifactId>protobuf-java</artifactId>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <!-- Needed so ${os.detected.classifier} works in protobuf-maven-plugin -->
+    <extensions>
+      <extension>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>os-maven-plugin</artifactId>
+        <version>1.7.0</version>
+      </extension>
+    </extensions>
+
+    <plugins>
+      <plugin>
+        <groupId>org.xolstice.maven.plugins</groupId>
+        <artifactId>protobuf-maven-plugin</artifactId>
+        <!-- Version and execution configuration inherited via parent’s pluginManagement -->
+      </plugin>
+    </plugins>
+  </build>
+</project>

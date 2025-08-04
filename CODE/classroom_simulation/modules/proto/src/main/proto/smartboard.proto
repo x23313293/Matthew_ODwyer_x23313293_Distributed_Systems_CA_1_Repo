@@ -1,0 +1,40 @@
+syntax = "proto3";
+
+package com.yourorg.classroom.smartboard;
+
+option java_multiple_files = true;
+option java_package        = "com.yourorg.classroom.smartboard";
+option java_outer_classname = "SmartBoardProto";
+
+service SmartBoardService {
+  // Starts a lesson at the board
+  rpc StartLesson (Empty) returns (Status);
+
+  // Ends the currently running lesson
+  rpc EndLesson (Empty) returns (Status);
+
+  // Displays the multimedia content on the board
+  rpc DisplayContent (ContentRequest) returns (Status);
+
+  // Checks the current lesson state and topic
+  rpc GetLessonStatus (Empty) returns (LessonStatus);
+}
+
+// “Empty” placeholder for methods with no input
+message Empty {}
+
+// Request indicating which content to display
+message ContentRequest {
+  string contentUrl = 1;
+}
+
+// Standard response containing a human-readable message
+message Status {
+  string message = 1;
+}
+
+// Status returned by GetLessonStatus()
+message LessonStatus {
+  string currentTopic = 1;
+  bool inProgress = 2;
+}

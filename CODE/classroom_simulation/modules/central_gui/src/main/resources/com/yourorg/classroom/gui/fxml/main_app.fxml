@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.BorderPane?>
+
+<!--
+  Main application layout for the Classroom Automation Simulation System.
+  Contains three tabs: Smart Board, Student Tracker, Environment.
+-->
+
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:id="rootPane"
+            prefWidth="900" prefHeight="600"
+            style="-fx-background-color: #F0F0F0;">
+
+  <!-- Optional padding around the content -->
+  <padding>
+    <Insets top="10" right="10" bottom="10" left="10"/>
+  </padding>
+
+  <center>
+    <TabPane fx:id="mainTabPane"
+             tabClosingPolicy="UNAVAILABLE"
+             prefWidth="870" prefHeight="540">
+      <tabs>
+        <Tab text="Smart Board">
+          <fx:include source="smartboard_tab.fxml"/>
+        </Tab>
+        <Tab text="Student Tracker">
+          <fx:include source="studenttracker_tab.fxml"/>
+        </Tab>
+        <Tab text="Environment">
+          <fx:include source="environment_tab.fxml"/>
+        </Tab>
+      </tabs>
+    </TabPane>
+  </center>
+
+</BorderPane>

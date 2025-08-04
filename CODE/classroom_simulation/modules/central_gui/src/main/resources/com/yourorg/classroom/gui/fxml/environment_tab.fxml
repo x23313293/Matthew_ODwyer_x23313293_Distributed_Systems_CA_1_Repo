@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<!--
+    FXML layout for the "Environment Control" tab in the main GUI.
+    Controlled by com.yourorg.classroom.gui.EnvironmentController
+-->
+
+<GridPane fx:id="envGrid"
+          fx:controller="com.yourorg.classroom.gui.EnvironmentController"
+          xmlns:fx="http://javafx.com/fxml"
+          alignment="TOP_CENTER"
+          hgap="10"
+          vgap="10">
+
+  <!-- spacing -->
+  <padding>
+    <Insets top="15" right="20" bottom="20" left="20"/>
+  </padding>
+
+  <!-- Header / Title -->
+  <Label text="Classroom Environment Control"
+         GridPane.columnIndex="0" GridPane.rowIndex="0"
+         GridPane.columnSpan="2"
+         style="-fx-font-size: 18px; -fx-font-weight: bold;"/>
+
+  <!-- Temperature input field -->
+  <Label text="Target Temperature (°C):"
+         GridPane.columnIndex="0" GridPane.rowIndex="1"/>
+  <TextField fx:id="temperatureField"
+             promptText="e.g. 22.5"
+             GridPane.columnIndex="1" GridPane.rowIndex="1"/>
+
+  <!-- Humidity input field -->
+  <Label text="Target Humidity (%):"
+         GridPane.columnIndex="0" GridPane.rowIndex="2"/>
+  <TextField fx:id="humidityField"
+             promptText="e.g. 60"
+             GridPane.columnIndex="1" GridPane.rowIndex="2"/>
+
+  <!-- Save / Submit button -->
+  <Button text="Save"
+          GridPane.columnIndex="0" GridPane.rowIndex="3"
+          GridPane.columnSpan="2"
+          onAction="#handleSaveButtonAction"
+          tooltip="Apply settings to environment"/>
+
+</GridPane>

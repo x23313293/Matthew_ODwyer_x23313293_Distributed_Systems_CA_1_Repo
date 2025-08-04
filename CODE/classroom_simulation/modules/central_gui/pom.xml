@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="
+           http://maven.apache.org/POM/4.0.0
+           https://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <!--  Inherit shared version & plugin definitions from the root parent -->
+  <parent>
+    <groupId>com.yourorg.classroom</groupId>
+    <artifactId>classroom-simulation</artifactId>
+    <version>1.0.0‑SNAPSHOT</version>
+  </parent>
+
+  <modelVersion>4.0.0</modelVersion>
+  <artifactId>central-gui</artifactId>
+  <packaging>jar</packaging>
+  <name>Central GUI Controller (JavaFX)</name>
+
+  <properties>
+    <!-- Ensure Maven builds with Java 17 -->
+    <maven.compiler.source>${java.version}</maven.compiler.source>
+    <maven.compiler.target>${java.version}</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+    <!-- gRPC client dependencies without version (inherited via grpc‑bom) -->
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-stub</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-protobuf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>io.grpc</groupId>
+      <artifactId>grpc-netty-shaded</artifactId>
+    </dependency>
+
+    <!-- Shared protocol messages and generated stubs -->
+    <dependency>
+      <groupId>com.yourorg.classroom</groupId>
+      <artifactId>proto</artifactId>
+    </dependency>
+
+    <!-- ServiceRegistry for service lookup -->
+    <dependency>
+      <groupId>com.yourorg.classroom</groupId>
+      <artifactId>discovery</artifactId>
+    </dependency>
+
+    <!-- JavaFX runtime modules used in UI -->
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-controls</artifactId>
+      <version>${javafx.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openjfx</groupId>
+      <artifactId>javafx-fxml</artifactId>
+      <version>${javafx.version}</version>
+    </dependency>
+
+    <!-- JUnit for client‑side testing -->
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-engine</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <!-- Activate JavaFX runner inherited from parent -->
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <!-- Version & other settings inherited -->
+        <configuration>
+          <!-- Your MainApp extends javafx.application.Application -->
+          <mainClass>com.yourorg.classroom.gui.MainApp</mainClass>
+        </configuration>
+      </plugin>
+
+      <!-- Exec plugin to run Directly -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.1.0</version>
+        <executions>
+          <execution>
+            <id>run-client</id>
+            <goals><goal>java</goal></goals>
+            <configuration>
+              <mainClass>com.yourorg.classroom.gui.MainApp</mainClass>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+</project>
