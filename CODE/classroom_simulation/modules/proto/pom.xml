@@ -19,7 +19,7 @@
   <name>Classroom Protocol Definitions (proto)</name>
 
   <properties>
-    <!-- If needed, override or define parent properties -->
+    <!-- Iif I needed to edit properties -->
   </properties>
 
   <dependencies>
@@ -49,3 +49,4 @@
     </plugins>
   </build>
 </project>
+
